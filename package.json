@@ -1,0 +1,10 @@
+{
+  "name": "bss_visu",
+  "version": "2.0.0-0",
+  "description": "BSS Visu V2",
+  "main": "backend/build/index.js",
+  "repository": "git@gitlab.com:zeway/bss_visu.git",
+  "author": "Julien Pelletier <julien.pelletier@zeway.com>",
+  "license": "MIT",
+  "private": true
+}
