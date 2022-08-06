@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import { WaitForSwap } from './WaitForSwap'
 
 class App extends React.Component {
 
@@ -44,7 +45,7 @@ class App extends React.Component {
       // listen to data sent from the websocket server
       const { slot, key, value } = JSON.parse(evt.data)
       console.log(JSON.stringify({ slot, key, value }));
-      this.setState({[key]: value})
+      this.setState({ [key]: value })
       // window[`Slot${slot}`].setState({ [key]: value })
     }
 
@@ -88,19 +89,22 @@ class App extends React.Component {
     if (!ws || ws.readyState == WebSocket.CLOSED) this.connect(); //check if websocket instance is closed, if so call `connect` function.
   };
 
+  step_rendering() {
+    switch (this.state.step) {
+      case 'wait-for-swap':
+        return <WaitForSwap />
+    }
+  }
+
   render() {
-    return (<div className="App">
-      <header className="App-header">
-        <p>
+    return (
+      <div>
+        <div className="Debug">
           WS connected: {this.state.connected ? "true" : "false"}
-        </p>
-        <p>
-          Step: {this.state.step}
-        </p>
-        <div className='grid'>
         </div>
-      </header>
-    </div>)
+        {this.step_rendering()}
+      </div>
+    )
   }
 }
 
