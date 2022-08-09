@@ -6,5 +6,10 @@
   "repository": "git@gitlab.com:zeway/bss_visu.git",
   "author": "Julien Pelletier <julien.pelletier@zeway.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+    "scripts": {
+      "install": "cd backend && yarn install && cd ../frontend && yarn install",
+      "build": "cd backend && yarn build && cd ../frontend && yarn build",
+      "start": "cd backend && yarn launch && cd ../frontend && serve -s build"
+    }
 }

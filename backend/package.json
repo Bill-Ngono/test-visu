@@ -11,7 +11,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "launch": " pm2-runtime start ecosystem.config.js --env production",
+    "launch": "pm2-runtime start ecosystem.config.js --env production",
     "launch_dev": "pm2-runtime start ecosystem.config.js",
     "start": "yarn run build && npm run launch",
     "build": "npx tsc",
