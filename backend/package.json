@@ -13,7 +13,7 @@
   "scripts": {
     "launch": "pm2-runtime start ecosystem.config.js --env production",
     "launch_dev": "pm2-runtime start ecosystem.config.js",
-    "start": "yarn run build && npm run launch",
+    "start": "pm2 start ecosystem.config.js --env production",
     "build": "npx tsc",
     "build_dev": "npx tsc --watch",
     "prepare": "husky install",

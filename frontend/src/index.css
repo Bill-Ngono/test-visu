@@ -1,0 +1,15 @@
+body {
+    height: 100% !important;
+    display: flex !important;
+    width: 100% !important;
+}
+
+#root {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+html {
+    width: 100% !important;
+    height: 100% !important;
+}

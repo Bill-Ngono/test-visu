@@ -48,7 +48,7 @@ const server = app.listen(express_port, () => {
 });
 
 const wsServer = new ws.Server({ server });
-wsServer.on('connection', (socket) => {
+    wsServer.on('connection', async (socket) => {
     console.log('WS client connected');
 
     // socket.on('message', (message) => {
@@ -59,7 +59,7 @@ wsServer.on('connection', (socket) => {
     //     }
     //     console.log(JSON.parse(message));
     // });
-
+    await delay(2000);
     send_ws(0, "step", "wait-for-swap");
 });
 
@@ -105,3 +105,9 @@ async function parse_zmq() {
 }
 
 parse_zmq();
+
+function delay(ms) {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(1), ms)
+    })
+}

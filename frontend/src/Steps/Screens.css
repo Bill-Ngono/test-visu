@@ -1,0 +1,46 @@
+.Orange {
+    background: linear-gradient(#f48040, #ff4745);
+}
+
+.Blue {
+    background: linear-gradient(#3876aa, #1a4171);
+}
+
+.Green {
+    background: linear-gradient(#4ab0a8, #a9e5bb);
+}
+
+.Line {
+    width: 369px;
+    height: 1px;
+    margin: 28px 0 23px;
+    border: solid 0.5px #fff;
+}
+
+.Approchez-votre-batt {
+    width: 362px;
+    height: 105px;
+    margin: 28px 7px 28px 0;
+    font-family: Poppins;
+    font-size: 25px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #fff;
+}
+
+.Etape-13 {
+    width: 77px;
+    height: 20px;
+    margin: 0 14px 0 0;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.84px;
+    color: #fff;
+}

@@ -1,6 +1,10 @@
 import './App.css';
 import React from 'react';
-import { WaitForSwap } from './WaitForSwap'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Steps } from './Steps/Steps';
+
 
 class App extends React.Component {
 
@@ -11,9 +15,10 @@ class App extends React.Component {
       connected: false,
       step: "startup-ongoing"
     }
-
-    this.toogle_cb = this.toogle_cb.bind(this)
-    this.connect = this.connect.bind(this)
+    this.insertSuccess = this.insertSuccess.bind(this)
+    this.collectSuccess = this.collectSuccess.bind(this)
+    this.swapCompleted = this.swapCompleted.bind(this)
+    this.errorPage = this.errorPage.bind(this)
   }
 
   componentDidMount() {
@@ -75,35 +80,61 @@ class App extends React.Component {
     };
   };
 
-  toogle_cb(slot, command, value) {
-    console.log(slot, command, value);
-    this.state.ws.send(JSON.stringify({ slot, command, value }))
-    return true
-  }
-
   /**
    * utilited by the @function connect to check if the connection is close, if so attempts to reconnect
    */
   check = () => {
     const { ws } = this.state;
-    if (!ws || ws.readyState == WebSocket.CLOSED) this.connect(); //check if websocket instance is closed, if so call `connect` function.
+    if (!ws || ws.readyState === WebSocket.CLOSED) this.connect(); //check if websocket instance is closed, if so call `connect` function.
   };
 
-  step_rendering() {
+  debug_step_rendering() {
     switch (this.state.step) {
       case 'wait-for-swap':
-        return <WaitForSwap />
+        return <div>
+          <button onClick={() => { this.setState({ step: "insert-battery" }) }}>Begin Swap</button>
+        </div>
+      case 'insert-battery':
+        return <div>
+          <button onClick={() => { this.setState({ step: "insert-battery", battery_inserted: true }) }}>Insert battery</button>
+        </div>
+      case 'pull-battery':
+        return <div>
+          <button onClick={() => { this.setState({ step: "swap-completed", battery_collected: 99 }) }}>Get battery</button>
+        </div>
+      default:
+        return null
     }
+  }
+
+  errorPage() {
+    this.setState({ step: "error-page" })
+  }
+
+  insertSuccess() {
+    this.setState({ step: "pull-battery" })
+  }
+
+  collectSuccess() {
+    this.setState({ step: "swap-completed" })
+  }
+
+  swapCompleted() {
+    this.setState({ step: "wait-for-swap" })
   }
 
   render() {
     return (
-      <div>
-        <div className="Debug">
-          WS connected: {this.state.connected ? "true" : "false"}
-        </div>
-        {this.step_rendering()}
-      </div>
+      <Container className="App h-100 w-100">
+        <Row className="Debug">
+          <Col>WS connected: {this.state.connected ? "true" : "false"}</Col>
+          <Col>Step: {this.state.step}</Col>
+          <Col>{this.debug_step_rendering()}</Col>
+        </Row>
+        <Row className='h-100'>
+          <Steps battery_inserted={this.state.battery_inserted} battery_collected={this.state.battery_collected} step={this.state.step} insertSuccess={this.insertSuccess} collectSuccess={ this.collectSuccess } errorPage={this.errorPage} swapCompleted={this.swapCompleted} />          
+        </Row>
+      </Container>
     )
   }
 }

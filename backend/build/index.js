@@ -61,8 +61,9 @@ const server = app.listen(express_port, () => {
     console.log(`Express server is running port ${express_port}`);
 });
 const wsServer = new ws_1.default.Server({ server });
-wsServer.on('connection', (socket) => {
+wsServer.on('connection', async (socket) => {
     console.log('WS client connected');
+    await delay(2000);
     send_ws(0, "step", "wait-for-swap");
 });
 function send_ws(slot, key, value) {
@@ -106,4 +107,9 @@ async function parse_zmq() {
     }
 }
 parse_zmq();
+function delay(ms) {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(1), ms);
+    });
+}
 //# sourceMappingURL=index.js.map
