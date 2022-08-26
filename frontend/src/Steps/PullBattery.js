@@ -1,15 +1,17 @@
-import '../Screens.css';
+import './Screens.css';
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import logo from '../../Images/logo-normal.png'
+import logo from '../Images/logo-normal.png'
 import {
     CircularProgressbar, buildStyles
 } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
+import store from '../app/store';
+import { swapCompleted } from '../features/goToPage';
 
 class PullTimer extends React.Component {
     constructor(props) {
@@ -24,8 +26,12 @@ class PullTimer extends React.Component {
     }
 
     render() {
-        if (this.props.success) {
-            setTimeout(() => this.props.successCb(), 3000);
+        let battery_collected = store.getState().steps.battery_collected
+        if (battery_collected) {
+            setTimeout(() => {
+                this.setState({ countdown: 30 });
+                store.dispatch(swapCompleted())
+            }, 3000);
             return <CircularProgressbar value={0} strokeWidth={50} text={`Merci !`}
                 styles={buildStyles({
                     textColor: "white",

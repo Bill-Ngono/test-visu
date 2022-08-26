@@ -1,13 +1,16 @@
-import '../Screens.css';
+import './Screens.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import logo from '../../Images/logo-normal.png'
+import logo from '../Images/logo-normal.png'
+import { useDispatch } from 'react-redux';
+import { waitForSwap } from '../features/goToPage';
 
 export function SwapCompleted(props) {
+    const dispatch = useDispatch()
     setTimeout(() => {
-        props.timerCb();
+        dispatch(waitForSwap())
     }, 10000);
     return (
         <Container className="Screen d-flex w-100 h-100 p-3 mx-auto flex-column">
