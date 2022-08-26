@@ -1,11 +1,11 @@
 import './Screens.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
-import logo from '../Images/logo-normal.png'
 import { useDispatch } from 'react-redux';
 import { waitForSwap } from '../features/goToPage';
+
+import { GraphicsBox } from '../Components/GraphicsBox';
+import { MessageBox } from '../Components/MessageBox';
+import { ScreenBox } from '../Components/ScreenBox';
 
 export function SwapCompleted(props) {
     const dispatch = useDispatch()
@@ -13,20 +13,17 @@ export function SwapCompleted(props) {
         dispatch(waitForSwap())
     }, 10000);
     return (
-        <Container className="Screen d-flex w-100 h-100 p-3 mx-auto flex-column">
-            <Row className='h-100 w-100'>
-                <Col className="Message Blue h-100 w-50">
-                    <img src={logo} alt="Logo" />;
-                    <span class="Approchez-votre-batt">
-                        Swap terminé
-                    </span>
-                    <div class="Line"></div>
-                    <span class="Positionnez-la-batte">
-                        Bonne route !
-                    </span>
-                </Col>
-                <Col>Vidéo</Col>
-            </Row>
-        </Container>
+        <ScreenBox>
+            <MessageBox color="Blue" logo="color" step={3}>
+                <p className='message-main py-5'>
+                    Swap terminé !
+                </p>
+                <div class="Line"></div>
+                <p className='py-5 message-alt'>
+                    Bonne route !
+                </p>
+            </MessageBox>
+            <GraphicsBox>GraphicsBox</GraphicsBox>
+        </ScreenBox>
     )
 }

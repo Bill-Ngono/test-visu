@@ -9,6 +9,19 @@ import { Steps } from './Steps/Steps';
 
 
 function Debug() {
+  const code = process.env.REACT_APP_NOT_SECRET_CODE
+  if (code !== 'production') {
+    return (
+      <Row className="Debug">
+        {/* <Col>WS connected: {this.state.connected ? "true" : "false"}</Col> */}
+        <Col>Step: <Step /></Col>
+        <Col><DebugButton /></Col>
+      </Row>
+    )
+  }
+}
+
+function DebugButton() {
   const step = useSelector(selectStep);
   const dispatch = useDispatch();
   switch (step) {
@@ -43,13 +56,9 @@ class App extends React.Component {
   render() {
     return (
       <Container className="App h-100 w-100">
-        <Row className="Debug">
-          {/* <Col>WS connected: {this.state.connected ? "true" : "false"}</Col> */}
-          <Col>Step: <Step /></Col>
-          <Col><Debug /></Col>
-        </Row>
+        < Debug />
         <Row className='h-100'>
-          <Steps />          
+          <Steps />
         </Row>
       </Container>
     )

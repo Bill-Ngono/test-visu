@@ -13,7 +13,7 @@ function Logo(props) {
         case 'grey':
             return <img className='w-50' src={logo_grey} alt="Logo" />
         case 'color':
-            return <img src={logo_color} alt="Logo" />
+            return <img className='w-50' src={logo_color} alt="Logo" />
         default:
             return
     }

@@ -1,16 +1,13 @@
-import './Screens.css';
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { GraphicsBox } from '../Components/GraphicsBox';
+import { MessageBox } from '../Components/MessageBox';
+import './Screens.css';
 
-import logo from '../Images/logo-normal.png'
-import {
-    CircularProgressbar, buildStyles
-} from 'react-circular-progressbar';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import store from '../app/store';
+import { ScreenBox } from '../Components/ScreenBox';
 import { swapCompleted } from '../features/goToPage';
 
 class PullTimer extends React.Component {
@@ -32,7 +29,7 @@ class PullTimer extends React.Component {
                 this.setState({ countdown: 30 });
                 store.dispatch(swapCompleted())
             }, 3000);
-            return <CircularProgressbar value={0} strokeWidth={50} text={`Merci !`}
+            return <CircularProgressbar className='w-25' value={0} strokeWidth={50} text={`Merci !`}
                 styles={buildStyles({
                     textColor: "white",
                     strokeLinecap: "butt"
@@ -40,7 +37,7 @@ class PullTimer extends React.Component {
         }
         else return (
             <div>
-                <CircularProgressbar value={this.state.countdown} maxValue={30} strokeWidth={50} text={this.state.countdown}
+                <CircularProgressbar className='w-25' value={this.state.countdown} maxValue={30} strokeWidth={50} text={this.state.countdown}
                     styles={buildStyles({
                         textColor: "white",
                         strokeLinecap: "butt"
@@ -53,29 +50,20 @@ class PullTimer extends React.Component {
 
 export function CollectBattery(props) {
     return (
-        <Container className="Screen d-flex w-100 h-100 p-3 mx-auto flex-column">
-            <Row className='h-100 w-100'>
-                <Col className="Message Green h-100 w-50">
-                    <img src={logo} alt="Logo" />;
-                    <span class="Approchez-votre-batt">
-                        Insérez votre batterie dans le compartiment ouvert
-                    </span>
-                    <div class="Line"></div>
-                    <span class="Positionnez-la-batte">
-                        Le BIP vous indique que votre batterie vide est bien récupérée.
-                    </span>
-                    <span class="Positionnez-la-batte">
-                        Vous avez 30 secondes.
-                    </span>
-
+        <ScreenBox>
+            <MessageBox color="Green" logo="color" step={2}>
+                <p className='message-main py-5'>
+                    Insérez votre batterie dans le compartiment ouvert
+                </p>
+                <div class="Line"></div>
+                <p className='py-5 message-alt'>
+                    Le BIP vous indique que votre batterie vide est bien récupérée.
+                    <br />
+                    Vous avez 30 secondes.
+                </p>
                     <PullTimer success={props.success || false} successCb={props.successCb} errorCb={props.errorPage} />
-
-                    <span class="Etape-13">
-                        Etape 3/3
-                    </span>
-                </Col>
-                <Col>Vidéo</Col>
-            </Row>
-        </Container>
+            </MessageBox>
+            <GraphicsBox>GraphicsBox</GraphicsBox>
+        </ScreenBox>
     )
 }
