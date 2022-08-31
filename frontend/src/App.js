@@ -9,7 +9,7 @@ import { Steps } from './Steps/Steps';
 
 
 function Debug() {
-  const code = process.env.REACT_APP_NOT_SECRET_CODE
+  const code = process.env.REACT_APP_DEBUG
   if (code !== 'production') {
     return (
       <Row className="Debug">
@@ -55,7 +55,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container className="App h-100 w-100">
+      <Container fluid className="App h-100 w-100">
         < Debug />
         <Row className='h-100'>
           <Steps />
