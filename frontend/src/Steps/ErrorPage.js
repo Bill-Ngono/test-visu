@@ -1,12 +1,15 @@
 import { GraphicsBox } from '../Components/GraphicsBox';
 import { MessageBox } from '../Components/MessageBox';
 import { ScreenBox } from '../Components/ScreenBox';
+import { selectErrorMessage } from '../features/goToPage';
+import { useSelector } from 'react-redux';
 import './Screens.css';
 
 export function ErrorPage(props) {
-    switch (props.errorType) {
-        case 'No empty slots':
-        case 'No battery available':
+    const errorMessage = useSelector(selectErrorMessage);
+    switch (errorMessage) {
+        case 'no-empty-slots':
+        case 'no-battery-available':
             return (
                 <ScreenBox >
                     <MessageBox color="Orange">
@@ -25,7 +28,7 @@ export function ErrorPage(props) {
                     <GraphicsBox>Photo</GraphicsBox>
                 </ScreenBox>
             )
-        case 'No battery inserted':
+        case 'no-battery-inserted':
             return (
                 <ScreenBox >
                     <MessageBox color="Orange">
@@ -44,7 +47,7 @@ export function ErrorPage(props) {
                     <GraphicsBox>Photo</GraphicsBox>
                 </ScreenBox>
             )
-        case 'Battery not recognized':
+        case 'bms-not-recognized':
             return (
                 <ScreenBox >
                     <MessageBox color="Orange">
@@ -63,5 +66,7 @@ export function ErrorPage(props) {
                     <GraphicsBox>Photo</GraphicsBox>
                 </ScreenBox>
             )
+        default:
+            return null;
     }
 }
