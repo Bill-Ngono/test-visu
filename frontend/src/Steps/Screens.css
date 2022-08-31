@@ -18,12 +18,13 @@
 
 .message-main {
     text-transform: uppercase;
-    font-family: Poppins;
+    font-family: Poppins-Medium;
+    font-size: xx-large;
     color: #fff;
 }
 
 .message-alt {
-    font-family: Poppins;
+    font-family: Poppins-Regular;
     color: #fff;
 }
 
@@ -34,27 +35,9 @@
     border-radius: 17px;
     text-transform: uppercase;
 }
-.message-alt {
-    font-family: Poppins;
-    color: #fff;
-}
 
 .text {
     font-family: Poppins;
     color: #fff;
     width: fit-content;
-}
-
-.Etape-13 {
-    width: 77px;
-    height: 20px;
-    margin: 0 14px 0 0;
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.84px;
-    color: #fff;
 }
