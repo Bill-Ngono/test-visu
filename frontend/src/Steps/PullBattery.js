@@ -1,10 +1,10 @@
 import React from 'react';
-import { GraphicsBox } from '../Components/GraphicsBox';
-import { MessageBox } from '../Components/MessageBox';
-import './Screens.css';
-
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { GraphicsBox } from '../Components/GraphicsBox';
+import { MessageBox } from '../Components/MessageBox';
+import { errorPage } from '../features/goToPage';
+import './Screens.css';
 
 import store from '../app/store';
 import { ScreenBox } from '../Components/ScreenBox';
@@ -17,7 +17,7 @@ class PullTimer extends React.Component {
             countdown: 30
         }
         setInterval(() => {
-            if (!this.state.countdown) this.props.errorCb();
+            if (!this.state.countdown) store.dispatch(errorPage('no-battery-inserted'));
             this.setState({ countdown: this.state.countdown - 1 })
         }, 1000)
     }

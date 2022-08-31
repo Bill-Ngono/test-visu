@@ -1,16 +1,13 @@
-import './Screens.css';
 import React from 'react';
-
-import {
-    CircularProgressbar, buildStyles
-} from 'react-circular-progressbar';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { ScreenBox } from '../Components/ScreenBox';
-import { MessageBox } from '../Components/MessageBox';
 import { GraphicsBox } from '../Components/GraphicsBox';
+import { MessageBox } from '../Components/MessageBox';
+import { ScreenBox } from '../Components/ScreenBox';
+import { errorPage, pullBattery } from '../features/goToPage';
+import './Screens.css';
 
 import store from '../app/store';
-import { pullBattery } from '../features/goToPage';
 
 
 class InsertTimer extends React.Component {
@@ -20,7 +17,7 @@ class InsertTimer extends React.Component {
             countdown: 30
         }
         setInterval(() => {
-            if (!this.state.countdown) this.props.errorCb();
+            if (!this.state.countdown) store.dispatch(errorPage('no-battery-inserted'));
             this.setState({ countdown: this.state.countdown - 1 })
         }, 1000)
     }

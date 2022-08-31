@@ -36,7 +36,7 @@ function ErrorButton() {
         </div>
       )
     case 'pull-battery':
-      <button onClick={() => dispatch(errorPage('no-battery-collected'))}>No BMS collected</button>
+      return <button onClick={() => dispatch(errorPage('no-battery-collected'))}>No BMS collected</button>
     default:
       return null;
   }
