@@ -11,36 +11,33 @@
 }
 
 .Line {
-    width: 369px;
+    width: 100%;
     height: 1px;
-    margin: 28px 0 23px;
-    border: solid 0.5px #fff;
+    border: solid 1px #fff;
 }
 
-.Approchez-votre-batt {
-    width: 362px;
-    height: 105px;
-    margin: 28px 7px 28px 0;
-    font-family: Poppins;
-    font-size: 25px;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
+.message-main {
+    text-transform: uppercase;
+    font-family: Poppins-Medium;
+    font-size: xx-large;
     color: #fff;
 }
 
-.Etape-13 {
-    width: 77px;
-    height: 20px;
-    margin: 0 14px 0 0;
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 500;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.84px;
+.message-alt {
+    font-family: Poppins-Regular;
     color: #fff;
+}
+
+.message-bubble {
+    font-family: Poppins;
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border-radius: 17px;
+    text-transform: uppercase;
+}
+
+.text {
+    font-family: Poppins;
+    color: #fff;
+    width: fit-content;
 }
