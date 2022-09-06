@@ -23,8 +23,9 @@ export const goToStep = createSlice({
             state.step = 'pull-battery'
             state.battery_collected = action.payload
         },
-        swapCompleted : (state) => {
+        swapCompleted : (state, action) => {
             state.step = 'swap-completed'
+            state.soc = action.payload || 0
         },
         errorPage: (state, action) => {
             state.step = 'error-page'

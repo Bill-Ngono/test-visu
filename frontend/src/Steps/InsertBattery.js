@@ -9,6 +9,7 @@ import './Screens.css';
 
 import store from '../app/store';
 
+import video from '../Videos/swap2.mov';
 
 class InsertTimer extends React.Component {
     constructor(props) {
@@ -63,7 +64,9 @@ export function InsertBattery(props) {
                 </p>
                 <InsertTimer success={props.success || false} successCb={props.successCb} errorCb={props.errorPage} />
             </MessageBox>
-            <GraphicsBox>GraphicsBox</GraphicsBox>
+            <GraphicsBox>
+                <video src={video} style={{maxWidth: '100%', maxHeight:'100%'}}  autoplay="true" />
+            </GraphicsBox>
         </ScreenBox>
     )
 }

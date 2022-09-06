@@ -1,9 +1,10 @@
-
-class WebSocket {
+import { errorPage, insertBattery, pullBattery, swapCompleted, waitForSwap } from './features/goToPage';
+export class WS {
     constructor() {
         this.timeout = 250; // Initial timeout duration as a class variable
         this.connected = false;
         this.ws = null
+        setTimeout(() => this.check())
     }
 
 
@@ -13,7 +14,7 @@ class WebSocket {
      */
     check() {
         const { ws } = this;
-        if (!ws || ws.readyState === WebSocket.CLOSED) this.connect(); //check if websocket instance is closed, if so call `connect` function.
+        if (!ws || ws.readyState === WS.CLOSED) this.connect(); //check if websocket instance is closed, if so call `connect` function.
     };
 
     /**
@@ -24,11 +25,8 @@ class WebSocket {
         var ws = new WebSocket("ws://localhost:8080");
         let that = this; // cache the this
         var connectInterval;
-
-        // websocket onopen event listener
         ws.onopen = () => {
             console.log("connected websocket main component");
-
             this.ws = ws;
             this.connected = true
             that.timeout = 250; // reset timer to 250 on open of websocket connection 
@@ -39,7 +37,26 @@ class WebSocket {
             // listen to data sent from the websocket server
             const { slot, key, value } = JSON.parse(evt.data)
             console.log(JSON.stringify({ slot, key, value }));
-            this.setState({ [key]: value })
+            debugger;
+            switch (key) {
+                case 'insert-battery':
+                    insertBattery(value);
+                    break;
+                case 'pull-battery':
+                    pullBattery(value);
+                    break;
+                case 'error-page':
+                    errorPage(value);
+                    break
+                case 'wait-for-swap':
+                    waitForSwap();
+                    break
+                case 'swap-completed':
+                    swapCompleted(value);
+                    break
+                default:
+                    errorPage('Unknown error');
+            }
             // window[`Slot${slot}`].setState({ [key]: value })
         }
 

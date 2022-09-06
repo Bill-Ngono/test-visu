@@ -39,7 +39,7 @@ function StepProgress(props) {
 export function MessageBox(props) {
     const alignStyle = { alignSelf: 'flex-end' };
     return (
-        <Col className={props.color + " Message h-100 w-50 p-5"}>
+        <Col className={props.color + " Message h-100 w-100 p-0"}>
             <Row className='w-100 mb-4'>
                 <Logo color={props.logo} />
             </Row>

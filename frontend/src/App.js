@@ -7,6 +7,7 @@ import './App.css';
 import { errorPage, insertBattery, pullBattery, selectStep } from './features/goToPage';
 import { Steps } from './Steps/Steps';
 
+import { WS } from './webSocket'
 
 function Debug() {
   const code = process.env.REACT_APP_DEBUG
@@ -69,16 +70,20 @@ function Step() {
 }
 
 class App extends React.Component {
-
-  // componentDidMount() {
-  //   this.connect();
+  ws = new WS();
+  // constructor(props) { 
+  //   super(props);
   // }
+
+  componentDidMount() {
+    this.ws.connect();
+  }
 
   render() {
     return (
-      <Container fluid className="App h-100 w-100">
+      <Container fluid className="App h-100 w-100 p-0">
         < Debug />
-        <Row className='h-100'>
+        <Row className='h-100 m-0'>
           <Steps />
         </Row>
       </Container>

@@ -35,8 +35,8 @@ export function Steps() {
             break;
     }
     return (
-        <Container className="Screen d-flex w-100 h-100 p-3 mx-auto flex-column">
-            <Row className='h-100 w-100'>
+        <Container fluid className="d-flex w-100 h-100 p-0 mx-auto flex-column">
+            <Row className='h-100 w-100 m-0'>
                 {result}
             </Row>
         </Container>

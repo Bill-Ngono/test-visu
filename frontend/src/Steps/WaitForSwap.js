@@ -1,12 +1,12 @@
 import './Screens.css';
 
-import { ScreenBox } from '../Components/ScreenBox';
-import { MessageBox } from '../Components/MessageBox';
-import { GraphicsBox } from '../Components/GraphicsBox';
+import { faSignal } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignal, faHourglassHalf, faVolumeHigh, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import { GraphicsBox } from '../Components/GraphicsBox';
+import { MessageBox } from '../Components/MessageBox';
+import { ScreenBox } from '../Components/ScreenBox';
 
-
+import video from '../Videos/swap1.mov';
 
 export function WaitForSwap() {
     return (
@@ -20,7 +20,9 @@ export function WaitForSwap() {
                     Positionnez la batterie en face du symbole <FontAwesomeIcon icon={faSignal} /> <span class="text-style-1">à moins d’un mètre</span> pour que l’opération puisse commencer.
                 </p>
             </MessageBox>
-            <GraphicsBox>GraphicsBox</GraphicsBox>
+            <GraphicsBox>
+                <video src={video} style={{ maxWidth: '100%' }} autoplay="true" loop="true"/>
+            </GraphicsBox>
         </ScreenBox>
     )
 }
