@@ -20,26 +20,26 @@ const zeromq_port = 5559;
 const app = express();
 
 // Configuration
-app.use((req, res, next) => {
-    // Require authentication when the connection is not from localhost.
-    if (req.headers.host == `localhost:${express_port}`) {
-        return next();
-    }
+// app.use((req, res, next) => {
+//     // Require authentication when the connection is not from localhost.
+//     if (req.headers.host == `localhost:${express_port}`) {
+//         return next();
+//     }
 
-    const authentication = basicAuth(req);
+//     const authentication = basicAuth(req);
 
-    if (
-        authentication &&
-        authentication.name == process.env.DASHBOARD_USER &&
-        authentication.pass == process.env.DASHBOARD_PWD
-    ) {
-        return next();
-    }
+//     if (
+//         authentication &&
+//         authentication.name == process.env.DASHBOARD_USER &&
+//         authentication.pass == process.env.DASHBOARD_PWD
+//     ) {
+//         return next();
+//     }
 
-    res.set('WWW-Authenticate', 'Basic');
+//     res.set('WWW-Authenticate', 'Basic');
 
-    return res.status(401).send();
-});
+//     return res.status(401).send();
+// });
 
 app.use(express.static(path.resolve(process.cwd(), 'frontend', 'build')));
 
