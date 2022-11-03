@@ -7,9 +7,20 @@
   "author": "Julien Pelletier <julien.pelletier@zeway.com>",
   "license": "MIT",
   "private": true,
-    "scripts": {
-      "install": "cd backend && yarn install; cd ../frontend && yarn install",
-      "build": "cd backend && yarn build && cd ../frontend && yarn build",
-      "start": "cd backend && yarn start && cd ../frontend && serve -s build"
-    }
+  "bin": {
+    "bss_visu": "index.js"
+  },
+  "pkg": {
+    "scripts": "backend/build/*.js",
+    "assets": "frontend/build/*",
+    "targets": [
+      "node16-linux-x64"
+    ],
+    "outputPath": "dist"
+  },
+  "scripts": {
+    "install": "cd backend && yarn install; cd ../frontend && yarn install",
+    "build": "cd backend && yarn build && cd ../frontend && yarn build",
+    "start": "cd backend && yarn start && cd ../frontend && serve -s build"
+  }
 }
