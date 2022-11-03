@@ -41,7 +41,7 @@ app.use((req, res, next) => {
     return res.status(401).send();
 });
 
-app.use(express.static(path.resolve(process.cwd(), '..', 'frontend', 'build')));
+app.use(express.static(path.resolve(process.cwd(), 'frontend', 'build')));
 
 const server = app.listen(express_port, () => {
     console.log(`Express server is running port ${express_port}`);

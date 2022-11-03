@@ -1,26 +1,47 @@
 {
+  "dependencies": {
+    "basic-auth": "^2.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "ws": "^8.8.1",
+    "zeromq": "^6.0.0-beta.6"
+  },
+  "scripts": {
+    "launch": "pm2-runtime start ecosystem.config.js --env production",
+    "launch_dev": "pm2-runtime start ecosystem.config.js",
+    "build_dev": "npx tsc --watch",
+    "prepare": "husky install",
+    "prettify": "yarn prettier --write --ignore-unknown src/",
+    "instal": "yarn install; cd frontend && yarn install",
+    "build": "tsc && cd frontend && yarn build",
+    "start": "pm2 start ecosystem.config.js --env production && cd ../frontend && serve -s build"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.4",
+    "typescript": "^4.7.4"
+  },
   "name": "bss_visu",
   "version": "2.0.0-0",
   "description": "BSS Visu V2",
-  "main": "backend/build/index.js",
+  "main": "build/index.js",
   "repository": "git@gitlab.com:zeway/bss_visu.git",
   "author": "Julien Pelletier <julien.pelletier@zeway.com>",
   "license": "MIT",
   "private": true,
   "bin": {
-    "bss_visu": "index.js"
+    "bss_visu": "build/index.js"
   },
   "pkg": {
-    "scripts": "backend/build/*.js",
-    "assets": "frontend/build/*",
+    "scripts": "build/*.js",
+    "assets": [
+      "node_modules/zeromq/prebuilds/linux-x64/**/*"
+    ],
     "targets": [
       "node16-linux-x64"
     ],
     "outputPath": "dist"
-  },
-  "scripts": {
-    "install": "cd backend && yarn install; cd ../frontend && yarn install",
-    "build": "cd backend && yarn build && cd ../frontend && yarn build",
-    "start": "cd backend && yarn start && cd ../frontend && serve -s build"
   }
 }
