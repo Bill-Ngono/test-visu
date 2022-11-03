@@ -16,9 +16,6 @@
     "build": "tsc && cd frontend && yarn build",
     "start": "pm2 start ecosystem.config.js --env production && cd ../frontend && serve -s build"
   },
-  "engines": {
-    "node": "18.x"
-  },
   "devDependencies": {
     "@types/node": "^18.6.4",
     "typescript": "^4.7.4"
