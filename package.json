@@ -13,7 +13,7 @@
     "prepare": "husky install",
     "prettify": "yarn prettier --write --ignore-unknown src/",
     "instal": "yarn install; cd frontend && yarn install",
-    "build": "tsc && cd frontend && yarn build",
+    "build": "npx tsc && cd frontend && yarn build",
     "start": "pm2 start ecosystem.config.js --env production && cd ../frontend && serve -s build"
   },
   "devDependencies": {
