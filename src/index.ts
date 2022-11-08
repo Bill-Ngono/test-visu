@@ -48,7 +48,7 @@ const server = app.listen(express_port, () => {
 });
 
 const wsServer = new ws.Server({ server });
-    wsServer.on('connection', async (socket) => {
+wsServer.on('connection', async (socket) => {
     console.log('WS client connected');
 
     // socket.on('message', (message) => {
@@ -64,7 +64,7 @@ const wsServer = new ws.Server({ server });
 });
 
 
-function send_ws(slot: number, key: string, value:any) {
+function send_ws(slot: number, key: string, value: any) {
     wsServer.clients.forEach((client) => {
         client.send(JSON.stringify({ slot, key, value }));
     });
@@ -77,6 +77,14 @@ async function parse_zmq() {
     console.log();
     try {
         for await (const [msg] of socket) {
+
+            /* const recipient: any = {
+                bss_control: 1,
+                bss_auth: 3,
+                bss_comm: 4,
+                bss_slot: 5
+            }; */
+
             const ack = msg;
             const from = msg[0];
             const to = msg[4];
@@ -90,14 +98,22 @@ async function parse_zmq() {
             ack[12] = 0x01;
             await socket.send(ack);
             try {
-                switch (type) {
-                    default:
-                        debugger;
-                        break;
+                if (from === 1) {
+                    switch (type) {
+                        /*
+                        from 1 status 10 type 17 value_1 156 => restart bss_control
+                        from 1 status 10 type 17 value_1 8 => bss_control ready ?
+                        from 1 status 6 type 17 value_1 214 => étape après
+                        */
+
+                        default:
+                            break;
+                    }
                 }
             } catch (e) {
                 console.error(e);
             }
+
         }
     } catch (e) {
         console.error(e);
