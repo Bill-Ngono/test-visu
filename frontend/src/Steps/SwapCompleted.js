@@ -19,7 +19,7 @@ export function SwapCompleted(props) {
                     Swap terminé !
                 </p>
                 <div class="Line"></div>
-                <p className='py-5 message-alt'>
+                <p className='message-alt'>
                     Bonne route !
                 </p>
             </MessageBox>

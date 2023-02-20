@@ -27,7 +27,7 @@ export function ErrorPage(props) {
                         <p className='py-5 message-bubble'>
                             Aie, nous n’arrivons pas à lire correctement votre batterie
                         </p>
-                        <p className='py-5 message-alt'>
+                        <p className='message-alt'>
                             Réessayez l'opération.
                         </p>
                     </MessageBox>
@@ -54,7 +54,7 @@ export function ErrorPage(props) {
                         <p className='py-5 message-bubble'>
                             Aie, nous n’arrivons pas à lire correctement votre batterie
                         </p>
-                        <p className='py-5 message-alt'>
+                        <p className='message-alt'>
                             Réessayez l'opération.
                         </p>
                     </MessageBox>
@@ -81,7 +81,7 @@ export function ErrorPage(props) {
                         <p className='py-5 message-bubble'>
                             Aie, nous n’arrivons pas à lire correctement votre batterie
                         </p>
-                        <p className='py-5 message-alt'>
+                        <p className='message-alt'>
                             Réessayez l'opération.
                         </p>
                     </MessageBox>
@@ -108,7 +108,7 @@ export function ErrorPage(props) {
                         <p className='py-5 message-bubble'>
                             Aie, vous n'avez pas retiré votre batterie !
                         </p>
-                        <p className='py-5 message-alt'>
+                        <p className='message-alt'>
                             Réessayez l'opération.
                         </p>
                     </MessageBox>

@@ -9,7 +9,7 @@ import './Screens.css';
 
 import store from '../app/store';
 
-import video from '../Videos/swap2.mov';
+import video from '../Videos/BSS_visu_step_2.mp4';
 
 class InsertTimer extends React.Component {
     constructor(props) {
@@ -53,11 +53,11 @@ export function InsertBattery(props) {
     return (
         <ScreenBox>
             <MessageBox color="Blue" logo="color" step={1}>
-                <p className='message-main py-5'>
+                <p className='message-main p-0 mt-5'>
                     Insérez votre batterie dans le compartiment ouvert
                 </p>
                 <div class="Line"></div>
-                <p className='py-5 message-alt'>
+                <p className='message-alt'>
                     Le BIP vous indique que votre batterie vide est bien récupérée.
                     <br />
                     Vous avez 30 secondes.

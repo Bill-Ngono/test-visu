@@ -2,6 +2,7 @@ body {
     height: 100% !important;
     display: flex !important;
     width: 100% !important;
+    overflow: hidden;
 }
 
 #root {
@@ -15,6 +16,12 @@ html {
 }
 
 @font-face {
+    font-family: 'Poppins-Light';
+        src: local('Poppins-Light'),
+        url('./fonts/Poppins-Light.ttf')
+}
+
+@font-face {
     font-family: 'Poppins-Regular';
         src: local('Poppins-Regular'),
         url('./fonts/Poppins-Regular.ttf')
@@ -24,4 +31,10 @@ html {
     font-family: 'Poppins-Medium';
         src: local('Poppins-Medium'),
         url('./fonts/Poppins-Medium.ttf')
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+        src: local('Poppins-Bold'),
+        url('./fonts/Poppins-Bold.ttf')
 }

@@ -56,7 +56,7 @@ export function CollectBattery(props) {
                     Insérez votre batterie dans le compartiment ouvert
                 </p>
                 <div class="Line"></div>
-                <p className='py-5 message-alt'>
+                <p className='message-alt'>
                     Le BIP vous indique que votre batterie vide est bien récupérée.
                     <br />
                     Vous avez 30 secondes.
