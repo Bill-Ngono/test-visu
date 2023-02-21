@@ -5,7 +5,8 @@ import { ScreenBox } from '../Components/ScreenBox';
 import { selectErrorMessage, waitForSwap } from '../features/goToPage';
 import './Screens.css';
 
-import image from '../Images/miskina.jpg';
+import image from '../Images/miskina.png';
+import warningImg from '../Images/warning.png';
 
 export function ErrorPage(props) {
     const dispatch = useDispatch();
@@ -19,10 +20,13 @@ export function ErrorPage(props) {
             return (
                 <ScreenBox >
                     <MessageBox color="Orange">
-                        <p className='message-main py-5'>
-                            Oops :(
-                            <br />
-                            Pas de batteries disponibles.
+                        <p className='message-main d-flex align-items-center'>
+                            <img className='mx-3' src={warningImg} alt="warning alert" />
+                            <p className='my-0'>
+                                Oops :(
+                                <br />
+                                Pas de batteries disponibles.
+                            </p>
                         </p>
                         <p className='py-5 message-bubble'>
                             Aie, nous n’arrivons pas à lire correctement votre batterie
@@ -36,7 +40,7 @@ export function ErrorPage(props) {
                             {
                                 backgroundImage: `url(${image})`,
                                 backgroundSize: 'cover',
-                                backgroundPosition: 'bottom 0% right 30%',
+                                backgroundPosition: 'right ',
                             }
                         } className="w-100 h-100"/>
                     </GraphicsBox>
@@ -63,7 +67,7 @@ export function ErrorPage(props) {
                             {
                                 backgroundImage: `url(${image})`,
                                 backgroundSize: 'cover',
-                                backgroundPosition: 'bottom 0% right 30%',
+                                backgroundPosition: 'right ',
                             }
                         } className="w-100 h-100" />
                     </GraphicsBox>
@@ -90,7 +94,7 @@ export function ErrorPage(props) {
                             {
                                 backgroundImage: `url(${image})`,
                                 backgroundSize: 'cover',
-                                backgroundPosition: 'bottom 0% right 30%',
+                                backgroundPosition: 'right ',
                             }
                         } className="w-100 h-100" />
                     </GraphicsBox>
@@ -117,7 +121,7 @@ export function ErrorPage(props) {
                             {
                                 backgroundImage: `url(${image})`,
                                 backgroundSize: 'cover',
-                                backgroundPosition: 'bottom 0% right 30%',
+                                backgroundPosition: 'right ',
                             }
                         } className="w-100 h-100" />
                     </GraphicsBox>

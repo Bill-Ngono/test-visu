@@ -10,12 +10,14 @@ import './Screens.css';
 import store from '../app/store';
 
 import video from '../Videos/BSS_visu_step_2.mp4';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDoorOpen, faHourglass3, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
 
 class InsertTimer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            countdown: 30
+            countdown: 300
         }
         setInterval(() => {
             if (!this.state.countdown) store.dispatch(errorPage('no-battery-inserted'));
@@ -30,14 +32,18 @@ class InsertTimer extends React.Component {
                 this.setState({ countdown: 30 });
                 store.dispatch(pullBattery(false))
             }, 3000);
-            return <CircularProgressbar className='w-25' value={0} strokeWidth={50} text={`Merci !`}
-                styles={buildStyles({
-                    textColor: "orange",
-                    strokeLinecap: "butt"
-                })} />
+            return (
+                <div className='d-flex justify-content-end'>
+                    <CircularProgressbar className='w-25' value={0} strokeWidth={50} text={`Merci !`}
+                    styles={buildStyles({
+                        textColor: "orange",
+                        strokeLinecap: "butt"
+                    })} />
+                </div>
+            )
         }
         else return (
-            <div>
+            <div className='d-flex justify-content-end'>
                 <CircularProgressbar className='w-25' value={this.state.countdown} maxValue={30} strokeWidth={50} text={this.state.countdown}
                     styles={buildStyles({
                         textColor: "orange",
@@ -54,13 +60,19 @@ export function InsertBattery(props) {
         <ScreenBox>
             <MessageBox color="Blue" logo="color" step={1}>
                 <p className='message-main p-0 mt-5'>
-                    Insérez votre batterie dans le compartiment ouvert
+                    Insérez votre batterie dans le compartiment ouvert <FontAwesomeIcon icon={faDoorOpen} />
                 </p>
-                <div class="Line"></div>
+                <div class="Line my-4 p-0"></div>
                 <p className='message-alt'>
-                    Le BIP vous indique que votre batterie vide est bien récupérée.
+                    <FontAwesomeIcon icon={faVolumeHigh} className='mx-1 fs-4' /> Le BIP vous indique que votre batterie vide est bien récupérée.
                     <br />
-                    Vous avez 30 secondes.
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <strong className='mt-5'>
+                        <FontAwesomeIcon icon={faHourglass3} className='mx-1 fs-4' /> Vous avez 30 secondes.
+                    </strong>
                 </p>
                 <InsertTimer success={props.success || false} successCb={props.successCb} errorCb={props.errorPage} />
             </MessageBox>

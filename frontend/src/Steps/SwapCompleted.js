@@ -6,6 +6,7 @@ import { waitForSwap } from '../features/goToPage';
 import { GraphicsBox } from '../Components/GraphicsBox';
 import { MessageBox } from '../Components/MessageBox';
 import { ScreenBox } from '../Components/ScreenBox';
+import batteryFull from '../Images/battery_pleine.png'
 
 export function SwapCompleted(props) {
     const dispatch = useDispatch()
@@ -15,15 +16,16 @@ export function SwapCompleted(props) {
     return (
         <ScreenBox>
             <MessageBox color="Blue" logo="color" step={3}>
-                <p className='message-main py-5'>
+                <p className='message-main text-center p-0 mt-5'>
                     Swap terminé !
                 </p>
-                <div class="Line"></div>
-                <p className='message-alt'>
-                    Bonne route !
+                <p className='message-alt text-center customStyle_txt'>
+                    Bonne route =)
                 </p>
             </MessageBox>
-            <GraphicsBox>GraphicsBox</GraphicsBox>
+            <GraphicsBox>
+                <img className='w-50' src={batteryFull} alt="Battery full" />
+            </GraphicsBox>
         </ScreenBox>
     )
 }
