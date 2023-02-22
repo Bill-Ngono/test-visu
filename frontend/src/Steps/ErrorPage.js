@@ -50,10 +50,13 @@ export function ErrorPage(props) {
             return (
                 <ScreenBox >
                     <MessageBox color="Orange">
-                        <p className='message-main py-5'>
-                            Oops :(
-                            <br />
-                            Aucune batterie insérée.
+                        <p className='message-main d-flex align-items-center'>
+                            <img className='mx-3' src={warningImg} alt="warning alert" />
+                            <p className='my-0'>
+                                Oops :(
+                                <br />
+                                Aucune batterie insérée.
+                            </p>
                         </p>
                         <p className='py-5 message-bubble'>
                             Aie, nous n’arrivons pas à lire correctement votre batterie
@@ -77,10 +80,13 @@ export function ErrorPage(props) {
             return (
                 <ScreenBox >
                     <MessageBox color="Orange">
-                        <p className='message-main py-5'>
-                            Oops :(
-                            <br />
-                            Erreur de détection.
+                        <p className='message-main d-flex align-items-center'>
+                            <img className='mx-3' src={warningImg} alt="warning alert" />
+                            <p className='my-0'>
+                                Oops :(
+                                <br />
+                                Erreur de détection.
+                            </p>
                         </p>
                         <p className='py-5 message-bubble'>
                             Aie, nous n’arrivons pas à lire correctement votre batterie
@@ -104,10 +110,13 @@ export function ErrorPage(props) {
             return (
                 <ScreenBox >
                     <MessageBox color="Orange">
-                        <p className='message-main py-5'>
-                            Oops :(
-                            <br />
-                            Erreur de détection.
+                        <p className='message-main d-flex align-items-center'>
+                            <img className='mx-3' src={warningImg} alt="warning alert" />
+                            <p className='my-0'>
+                                Oops :(
+                                <br />
+                                Erreur de détection.
+                            </p>
                         </p>
                         <p className='py-5 message-bubble'>
                             Aie, vous n'avez pas retiré votre batterie !

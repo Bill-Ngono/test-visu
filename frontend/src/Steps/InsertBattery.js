@@ -17,7 +17,7 @@ class InsertTimer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            countdown: 300
+            countdown: 30
         }
         setInterval(() => {
             if (!this.state.countdown) store.dispatch(errorPage('no-battery-inserted'));
