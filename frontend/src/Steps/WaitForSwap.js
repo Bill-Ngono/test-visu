@@ -6,18 +6,18 @@ import { GraphicsBox } from '../Components/GraphicsBox';
 import { MessageBox } from '../Components/MessageBox';
 import { ScreenBox } from '../Components/ScreenBox';
 
-import video from '../Videos/swap1.mov';
+import video from '../Videos/BSS_visu_step_1.mp4';
 
 export function WaitForSwap() {
     return (
         <ScreenBox>
             <MessageBox color="Orange" logo="grey" step={0}>
-                <p className='message-main'>
+                <p className='message-main p-0 mt-5'>
                     Approchez votre batterie de la station d’échange pour commencer <FontAwesomeIcon icon={faSignal} />
                 </p>
-                <div class="Line my-4"></div>
-                <p className='message-alt'>
-                    Positionnez la batterie en face du symbole <FontAwesomeIcon icon={faSignal} /> <span class="text-style-1">à moins d’un mètre</span> pour que l’opération puisse commencer.
+                <div class="Line my-4 p-0"></div>
+                <p className='message-alt p-0'>
+                    Positionnez la batterie en face du symbole <FontAwesomeIcon icon={faSignal} /> <strong>à moins d’un mètre</strong> pour que l’opération puisse commencer.
                 </p>
             </MessageBox>
             <GraphicsBox>
