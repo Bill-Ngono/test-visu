@@ -1,3 +1,15 @@
+/* Start for dev */
+.Debug.row {
+    position: absolute;
+    right: 0;
+    margin: 0 auto;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    background: #fff;
+}
+/* End for_dev*/
+
 .Orange {
     background: linear-gradient(223.61deg, #F48040 0%, #FF4745 97.69%);
 }
@@ -31,12 +43,32 @@
     margin-bottom: 15%;
 }
 
+.message-bubble-sub {
+    color: #475569 !important;
+}
 .message-bubble {
     font-family: Poppins-regular;
-    color: rgb(0, 0, 0);
-    background-color: white;
+    font-weight: 700;
+    font-size: 18px;
+    background: linear-gradient(229.89deg, #3876AA 16.35%, #1A4171 84.24%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.message-bubble-holder {
+    position: relative;
+    background: #FFFFFF;
     border-radius: 17px;
-    text-transform: uppercase;
+    padding: 1rem;
+    margin: 8rem 0 5rem 0;
+}
+
+.warning_img {
+    position: absolute;
+    margin: 0 auto;
+    right: -5rem;
 }
 
 .text {
