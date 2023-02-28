@@ -136,6 +136,42 @@ export function ErrorPage(props) {
                     </GraphicsBox>
                 </ScreenBox>
             )
+        case 'station-reboot':
+            return (
+                <ScreenBox >
+                    <MessageBox color="Orange">
+                        <p className='message-main d-flex align-items-center'>
+                            {/* <img className='mx-3' src={warningImg} alt="warning alert" /> */}
+                            <p className='my-0'>
+                                redémarrage 
+                                <br></br>
+                                en cours
+                            </p>
+                        </p>
+                        <p className='py-5 message-bubble'>
+                            La station est en cours de redémarrage
+                            <br></br>
+                            L'opération sera terminée dans moins que d'une minute
+                            <br></br>
+                            Vous pourrez ensuite échanger votre batterie !
+                        </p>
+                        <p className='message-alt'>
+                            <strong>
+                                merci pour votre patience
+                            </strong>
+                        </p>
+                    </MessageBox>
+                    <GraphicsBox>
+                        <div style={
+                            {
+                                backgroundImage: `url(${image})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'right ',
+                            }
+                        } className="w-100 h-100" />
+                    </GraphicsBox>
+                </ScreenBox>
+            )
         default:
             return null;
     }
