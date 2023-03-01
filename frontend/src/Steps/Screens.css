@@ -138,3 +138,8 @@
     color: #FFFFFF;
     text-align: center;
 }
+
+.bordred_txt {
+    padding-left: 1rem;
+    border-left: 1px dashed #1B285D;
+}

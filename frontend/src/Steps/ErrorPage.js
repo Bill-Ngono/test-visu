@@ -152,13 +152,19 @@ export function ErrorPage(props) {
                             </p>
                         </p>
                         <p className='p-5 mt-5 message-bubble blue_txt'>
-                            La station est en cours de redémarrage
+                            <p className="bordred_txt">
+                                La station est en cours de redémarrage
+                            </p>
                             <br></br>
-                            <strong>
-                                L'opération sera terminée dans moins que d'une minute
-                            </strong>
+                            <p className="bordred_txt">
+                                <strong>
+                                    L'opération sera terminée dans moins que d'une minute
+                                </strong>
+                            </p>
                             <br></br>
-                            Vous pourrez ensuite échanger votre batterie !
+                            <p className="bordred_txt">
+                                Vous pourrez ensuite échanger votre batterie !
+                            </p>
                         </p>
                         <p className='message-alt mt-5 reboottxt'>
                             <strong>
