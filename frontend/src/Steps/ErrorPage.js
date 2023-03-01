@@ -7,6 +7,7 @@ import './Screens.css';
 
 import image from '../Images/miskina.png';
 import warningImg from '../Images/warning.png';
+import pathIcon from '../Images/Path.png';
 
 export function ErrorPage(props) {
     const dispatch = useDispatch();
@@ -140,22 +141,26 @@ export function ErrorPage(props) {
             return (
                 <ScreenBox >
                     <MessageBox color="Orange">
-                        <p className='message-main d-flex align-items-center'>
-                            {/* <img className='mx-3' src={warningImg} alt="warning alert" /> */}
+                        <div className='d-flex justify-content-center'>
+                            <img className='mx-3' src={pathIcon} alt="Reboot" />
+                        </div>
+                        <p className='message-main d-flex align-items-center title_large'>
                             <p className='my-0'>
                                 redémarrage 
                                 <br></br>
                                 en cours
                             </p>
                         </p>
-                        <p className='py-5 message-bubble'>
+                        <p className='p-5 mt-5 message-bubble blue_txt'>
                             La station est en cours de redémarrage
                             <br></br>
-                            L'opération sera terminée dans moins que d'une minute
+                            <strong>
+                                L'opération sera terminée dans moins que d'une minute
+                            </strong>
                             <br></br>
                             Vous pourrez ensuite échanger votre batterie !
                         </p>
-                        <p className='message-alt'>
+                        <p className='message-alt mt-5 reboottxt'>
                             <strong>
                                 merci pour votre patience
                             </strong>
