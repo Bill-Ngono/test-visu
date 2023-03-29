@@ -30,11 +30,10 @@ function ErrorButton() {
     case 'wait-for-swap':
       return (
         <div>
+          <button onClick={() => dispatch(errorPage('station-reboot'))}>Station reboot</button>
           <button onClick={() => dispatch(errorPage('no-battery-available'))}>No BMS available</button>
-          <button onClick={() => dispatch(errorPage('charging-station'))}>Charging station</button>
         </div>
-      )
-
+      ) 
     case 'insert-battery':
       return (
         <div>

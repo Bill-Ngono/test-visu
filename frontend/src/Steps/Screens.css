@@ -138,7 +138,11 @@
     font-weight: 900;
     font-size: 28px;
 }
-
+.title_large {
+    font-family: 'Poppins-Bold';
+    font-weight: 600;
+    font-size: 40px;
+}
 .customStyle_txt {
     background: linear-gradient(180deg, #4AB0A8 0%, #A9E5BB 74.23%);
     -webkit-background-clip: text;
@@ -149,4 +153,25 @@
     font-weight: 900;
     font-size: 35px;
     text-transform: uppercase;
+}
+
+.blue_txt {
+    font-family: 'Poppins-Regular';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1A4171;
+    text-transform: initial !important;
+}
+.reboottxt {
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.bordred_txt {
+    padding-left: 1rem;
+    border-left: 1px dashed #1B285D;
 }
