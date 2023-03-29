@@ -28,7 +28,13 @@ function ErrorButton() {
   const dispatch = useDispatch();
   switch (step) {
     case 'wait-for-swap':
-      return <button onClick={() => dispatch(errorPage('no-battery-available'))}>No BMS available</button>
+      return (
+        <div>
+          <button onClick={() => dispatch(errorPage('no-battery-available'))}>No BMS available</button>
+          <button onClick={() => dispatch(errorPage('charging-station'))}>Charging station</button>
+        </div>
+      )
+
     case 'insert-battery':
       return (
         <div>
