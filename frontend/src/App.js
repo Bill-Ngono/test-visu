@@ -4,18 +4,20 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { errorPage, insertBattery, pullBattery, selectStep } from './features/goToPage';
-import { Steps } from './Steps/Steps';
+import { selectStep } from './utils/selectors'
+import { errorPage, insertBattery, pullBattery } from './features/stepReducer';
+import SocketToSteps from './webSocket/SocketToSteps';
 
-import { WS } from './webSocket'
 
 function Debug() {
+
+  const step = useSelector(selectStep());
+
   const code = process.env.REACT_APP_DEBUG
   if (code !== 'production') {
     return (
       <Row className="Debug">
-        {/* <Col>WS connected: {this.state.connected ? "true" : "false"}</Col> */}
-        <Col>Step: <Step /></Col>
+        <Col>Step: {JSON.stringify(step)}</Col>
         <Col><DebugButton /></Col>
         <Col><ErrorButton /></Col>
       </Row>
@@ -24,7 +26,7 @@ function Debug() {
 }
 
 function ErrorButton() {
-  const step = useSelector(selectStep);
+  const step = useSelector(selectStep());
   const dispatch = useDispatch();
   switch (step) {
     case 'wait-for-swap':
@@ -32,6 +34,7 @@ function ErrorButton() {
         <div>
           <button onClick={() => dispatch(errorPage('station-reboot'))}>Station reboot</button>
           <button onClick={() => dispatch(errorPage('no-battery-available'))}>No BMS available</button>
+          <button onClick={() => dispatch(errorPage('charging-station'))}>Charging Station</button>
         </div>
       ) 
     case 'insert-battery':
@@ -49,7 +52,7 @@ function ErrorButton() {
 }
 
 function DebugButton() {
-  const step = useSelector(selectStep);
+  const step = useSelector(selectStep());
   const dispatch = useDispatch();
   switch (step) {
     case 'wait-for-swap':
@@ -69,30 +72,34 @@ function DebugButton() {
   }
 }
 
-function Step() {
-  const step = useSelector(selectStep);
-  return <span>{step}</span>
-}
+
+// const Step = () => {
+  
+//   // return <span>{step}</span>
+// }
 
 class App extends React.Component {
-  ws = new WS();
+  
+  // const store = useStore()
+
+  // ws = new WS();
   // constructor(props) { 
   //   super(props);
   // }
 
   componentDidMount() {
-    this.ws.connect();
+    // this.ws.connect();
   }
 
   render() {
     return (
       <Container fluid className="App h-100 w-100 p-0">
-        < Debug />
+        < Debug/>
         <Row className='h-100 m-0'>
-          <Steps />
+          <SocketToSteps />
         </Row>
       </Container>
-    )
+    ) 
   }
 }
 

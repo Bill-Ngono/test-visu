@@ -1,10 +1,11 @@
-import express from 'express';
-import ws from 'ws';
-import { existsSync } from 'fs';
-import basicAuth from 'basic-auth';
-import path from 'path';
-import dotenv from 'dotenv'
-import * as zeromq from 'zeromq';
+const express = require('express')
+const http = require('http')
+const ws = require('ws')
+const {existsSync} = require('fs')
+const basicAuth = require('basic-auth')
+const path = require('path')
+const dotenv = require('dotenv')
+const zeromq = require('zeromq')
 
 if (
     process.env.NODE_ENV === 'development' &&
@@ -43,7 +44,9 @@ const app = express();
 
 app.use(express.static(path.resolve(process.cwd(), 'frontend', 'build')));
 
-const server = app.listen(express_port, () => {
+const server = http.createServer(app);
+
+server.listen(express_port, () => {
     console.log(`Express server is running port ${express_port}`);
 });
 
@@ -60,11 +63,55 @@ wsServer.on('connection', async (socket) => {
     //     console.log(JSON.parse(message));
     // });
     await delay(2000);
-    send_ws(0, "step", "wait-for-swap");
+    // send_ws(0, "step", "wait-for-swap");
+    send_ws(0, "wait-for-swap", "");
 });
 
+app.get('/', (req, res) => {
+    res.send('BSS Control Simulator')
+})
 
-function send_ws(slot: number, key: string, value: any) {
+
+app.get('/send/:step', (req, res) => {
+    const step = req.params.step
+    switch (step) {
+        case "1":
+            send_ws(0, "wait-for-swap", "")
+            break;
+        case "2":
+            send_ws(0, "station-reboot", "")
+            break;
+        case "3":
+            send_ws(0, "insert-battery", false)
+            break;
+        case "4":
+            send_ws(0, "insert-battery", true)
+            break;
+        case "5":
+            send_ws(0, "pull-battery", false)
+            break;
+        case "6":
+            send_ws(95, "pull-battery", true)
+            break;
+        case "7":
+            send_ws(65, "pull-battery", true)
+            break;
+        case "8":
+            send_ws(0, "charging-station", "")
+            break;
+        case "9":
+            send_ws(0, "error-page", "Aie, nous n'arrivons pas à lire correctement votre batterie")
+            break;
+    
+        default:
+            break;
+    }
+    res.send(`Sended: ${step}`)
+    
+})
+
+
+function send_ws(slot, key, value) {
     wsServer.clients.forEach((client) => {
         client.send(JSON.stringify({ slot, key, value }));
     });

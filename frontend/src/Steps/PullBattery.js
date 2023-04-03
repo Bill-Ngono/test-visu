@@ -3,16 +3,18 @@ import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { GraphicsBox } from '../Components/GraphicsBox';
 import { MessageBox } from '../Components/MessageBox';
-import { errorPage } from '../features/goToPage';
+import { errorPage } from '../features/stepReducer';
 import './Screens.css';
 
-import store from '../app/store';
+import store from '../utils/store';
 import { ScreenBox } from '../Components/ScreenBox';
-import { swapCompleted } from '../features/goToPage';
+import { swapCompleted } from '../features/stepReducer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight, faHourglass3 } from '@fortawesome/free-solid-svg-icons';
 
 import video from '../Videos/BSS_visu_step_3.mp4';
+import { useSelector } from 'react-redux';
+import { selectBatteryCollected } from '../utils/selectors';
 
 class PullTimer extends React.Component {
     constructor(props) {
@@ -20,30 +22,28 @@ class PullTimer extends React.Component {
         this.state = {
             countdown: 30
         }
-        setInterval(() => {
-            if (!this.state.countdown) store.dispatch(errorPage('no-battery-inserted'));
-            this.setState({ countdown: this.state.countdown - 1 })
+        let pullCount = window.setInterval(async() =>  {
+            
+            const battery_collected = store.getState().steps.battery_collected
+
+            if (battery_collected) {
+                window.clearInterval(pullCount)
+            }
+            
+            if (this.state.countdown === 0) {
+                await this.setState({ countdown: '0'})
+                window.clearInterval(pullCount)
+            }
+            else {
+                this.setState({ countdown: this.state.countdown - 1 })
+            }
+            console.log('it loop on pull');
+
         }, 1000)
     }
 
     render() {
-        let battery_collected = store.getState().steps.battery_collected
-        if (battery_collected) {
-            setTimeout(() => {
-                this.setState({ countdown: 30 });
-                store.dispatch(swapCompleted())
-            }, 3000);
-            return (
-                <div className='d-flex justify-content-end'>
-                    <CircularProgressbar className='w-25' value={0} strokeWidth={50} text={`Merci !`}
-                    styles={buildStyles({
-                        textColor: "orange",
-                        strokeLinecap: "butt"
-                    })} />
-                </div>
-            ) 
-        }
-        else return (
+        return (
             <div className='d-flex justify-content-end'>
                 <CircularProgressbar className='w-25' value={this.state.countdown} maxValue={30} strokeWidth={50} text={this.state.countdown}
                     styles={buildStyles({
@@ -56,7 +56,23 @@ class PullTimer extends React.Component {
     }
 }
 
+function Thanks() {
+    window.setTimeout(() => {
+        store.dispatch(swapCompleted())
+    }, 3000)
+    return (
+        <div className='d-flex justify-content-end'>
+            <CircularProgressbar className='w-25' value={0} strokeWidth={50} text={`Merci !`}
+            styles={buildStyles({
+                textColor: "orange",
+                strokeLinecap: "butt"
+            })} />
+        </div>
+    )
+}
+
 export function CollectBattery(props) {
+    const battery_collected = useSelector(selectBatteryCollected())
     return (
         <ScreenBox>
             <MessageBox color="Green" logo="color" step={2}>
@@ -75,7 +91,11 @@ export function CollectBattery(props) {
                         <FontAwesomeIcon icon={faHourglass3} className='mx-1 fs-4' /> Vous avez 30 secondes.
                     </strong>
                 </p>
-                    <PullTimer success={props.success || false} successCb={props.successCb} errorCb={props.errorPage} />
+                {
+                    (battery_collected)
+                    ? (<Thanks />)
+                    : (<PullTimer />)
+                }
             </MessageBox>
             <GraphicsBox>
                 <video src={video} style={{maxWidth: '100%', maxHeight:'100%'}}  autoplay="true" />

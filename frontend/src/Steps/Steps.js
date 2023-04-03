@@ -7,16 +7,22 @@ import { CollectBattery } from './PullBattery';
 import { StartupOngoing } from './StartupOngoing';
 import { SwapCompleted } from './SwapCompleted';
 import { WaitForSwap } from './WaitForSwap';
+import { StationReboot } from './StationReboot';
 
 import { useSelector } from 'react-redux';
-import { selectStep } from '../features/goToPage';
+import { selectStep, selectBatteryInserted } from '../utils/selectors';
+import { ChargingStation } from './ChargingStation';
 
 export function Steps() {
     let result
-    const step = useSelector(selectStep);
+    const step = useSelector(selectStep());
+    const battery_inserted = useSelector(selectBatteryInserted())
     switch (step) {
         case 'wait-for-swap':
             result = <WaitForSwap />
+            break;
+        case 'charging-station':
+            result = <ChargingStation />
             break;
         case 'insert-battery':
             result = <InsertBattery />
@@ -26,6 +32,9 @@ export function Steps() {
             break;
         case 'swap-completed':
             result = <SwapCompleted />
+            break;
+        case 'station-reboot':
+            result = <StationReboot />
             break;
         case 'startup-ongoing':
             result = <StartupOngoing />

@@ -1,12 +1,15 @@
-import { errorPage, insertBattery, pullBattery, swapCompleted, waitForSwap } from './features/goToPage';
+import { errorPage, insertBattery, pullBattery, waitForSwap, swapCompleted } from './features/goToPage';
+
+
 export class WS {
+
+    
     constructor() {
         this.timeout = 250; // Initial timeout duration as a class variable
         this.connected = false;
         this.ws = null
         setTimeout(() => this.check())
     }
-
 
 
     /**
@@ -34,10 +37,12 @@ export class WS {
         };
 
         ws.onmessage = evt => {
+            
             // listen to data sent from the websocket server
             const { slot, key, value } = JSON.parse(evt.data)
             console.log(JSON.stringify({ slot, key, value }));
-            debugger;
+            
+            // debugger;
             switch (key) {
                 case 'insert-battery':
                     insertBattery(value);
@@ -57,10 +62,11 @@ export class WS {
                 default:
                     errorPage('Unknown error');
             }
+        
             // window[`Slot${slot}`].setState({ [key]: value })
-        }
+          }
 
-        // websocket onclose event listener
+        // websocket onclose event listener 
         ws.onclose = e => {
             console.log(
                 `Socket is closed. Reconnect will be attempted in ${Math.min(
